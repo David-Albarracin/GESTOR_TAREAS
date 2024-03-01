@@ -1,11 +1,14 @@
+
 //TEMPLATE
 const template = document.createElement("template");
-template.innerHTML =  html`
-<
+template.innerHTML =  /*HTML*/`
+<style>
+    @import './styles.css';
+    @import './App/Components/home/home.css';
+</style>
 <div class="container-xl">
-    <div class="d-grid">
+    <div class="d-grid test">
         <form class="col-lg-6 mt-3">
-            
             <div class="mb-3">
                 <label for="nameTask" class="form-label">Nombre de la Tarea: </label>
                 <input type="text" class="form-control" id="nameTask" aria-describedby="emailHelp">
@@ -32,14 +35,16 @@ template.innerHTML =  html`
 export class Home extends HTMLElement {
     constructor(){
         super();
+        this.attachShadow({ mode: "open" });
         this.render();
     }
 
     render(){
-        //load Component and template  
+        //load Component and template
         const html = template.content.cloneNode((true));
-        
-        this.appendChild(html);
+        const input = html.querySelector('input')
+        input.value = "SOFIA"
+        this.shadowRoot.appendChild(html);
 
     };
 };

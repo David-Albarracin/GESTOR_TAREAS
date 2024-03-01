@@ -1,9 +1,9 @@
 
 //TEMPLATE
 const template = document.createElement("template");
-template.innerHTML =  html`
-<ul class="nav nav-pills">
-  <li class="nav-item"><a href="#" data-link='["i"]' class="nav-link active" aria-current="page">Inicio</a></li>
+template.innerHTML =  /*HTML*/`
+<ul class="nav nav-pills test">
+  <li class="nav-item "><a href="#" data-link='["i"]' class="nav-link active" aria-current="page">Inicio</a></li>
   <li class="nav-item"><a href="#" data-link='["c"]' class="nav-link">Tareas Completas</a></li>
   <li class="nav-item"><a href="#" data-link='["p"]' class="nav-link">Tareas Pendientes</a></li>
 </ul>
@@ -19,7 +19,6 @@ export class NavMenu extends HTMLElement {
     render(){
         //load Component and template  
         const html = template.content.cloneNode((true));
-        const input = html.querySelector('input')
         this.appendChild(html);
 
 
