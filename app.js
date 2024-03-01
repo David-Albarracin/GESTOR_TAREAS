@@ -1,5 +1,5 @@
-import './app/components/navMenu/navMenu.js'
-import './app/components/home/home.js'
+import './App/Components/navMenu/navMenu.js'
+import './App/Components/home/home.js'
 
 document.addEventListener('DOMContentLoaded', (e) => {
     const main = document.querySelector('#main')
