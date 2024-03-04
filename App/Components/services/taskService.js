@@ -2,7 +2,7 @@ import {TaskList} from './../taskList/taskList.js';
 
 class TaskService {
     //urlData = './../../data/data.json'
-    urlData = 'https://github.com/David-Albarracin/GESTOR_TAREAS/blob/main/App/data/data.json';
+    urlData = 'https://david-albarracin.github.io/GESTOR_TAREAS/App/data/data.json';
     tasks = [];
 
     constructor() {
@@ -11,8 +11,7 @@ class TaskService {
 
     async loadTasks() {
         try {
-            const response = await fetch(this.urlData);
-            const data = await response.json();
+            const data = await fetch(this.urlData).then(res => res.json());
             this.tasks = data.task;
         } catch (error) {
             this.tasks = []
