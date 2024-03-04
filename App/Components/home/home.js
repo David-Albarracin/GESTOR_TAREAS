@@ -1,12 +1,12 @@
-import { taskService } from "./../../services/taskService.js";
+import { taskService } from "/app/services/taskService.js";
 
 
 //TEMPLATE
 const template = document.createElement("template");
 template.innerHTML =  /*HTML*/`
 <style>
-    @import './styles.css';
-    @import './App/Components/home/home.css';
+    @import '/styles.css';
+    @import '/app/components/home/home.css';
 </style>
 <div class="d-grid">
     <form id="taskForm" class="col-lg-6 mt-3 full-width">

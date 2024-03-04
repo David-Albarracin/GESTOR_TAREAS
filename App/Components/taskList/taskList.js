@@ -1,5 +1,5 @@
 
-import {taskService} from './../../services/taskService.js'
+import {taskService} from '/app/services/taskService.js'
 
 
 //TEMPLATE

@@ -1,4 +1,4 @@
-import {TaskList} from './../components/taskList/taskList.js';
+import {TaskList} from '/app/components/taskList/taskList.js';
 
 
 class TaskService {
