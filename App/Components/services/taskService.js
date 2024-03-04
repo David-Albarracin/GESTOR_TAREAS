@@ -21,8 +21,14 @@ class TaskService {
     }
 
     async saveData(task) {
-        this.tasks.push(task);
-        new TaskList().newTask(task);
+        const taskR = this.tasks.find(element => element.nameTask == task.nameTask)
+        if (!taskR) {
+            this.tasks.push(task)
+            new TaskList().newTask(task)
+            return
+        }
+        alert("El Nombre de la Tarea Esta Repetido")
+        return 
     }
 
 }

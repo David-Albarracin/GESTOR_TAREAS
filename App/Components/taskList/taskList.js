@@ -24,6 +24,7 @@ template.innerHTML =  /*HTML*/`
 
 //COMPONENT
 export class TaskList extends HTMLElement {
+
     constructor(){
         super();
         this.render();
@@ -32,7 +33,7 @@ export class TaskList extends HTMLElement {
     async render(){
         //load Component and template  
         const html = template.content.cloneNode((true));
-        const tasks = taskService.tasks.length > 0? taskService.tasks : await taskService.loadTasks() 
+        const tasks = await taskService.loadTasks();
         tasks.forEach(task => {
           html.querySelector('#taskTable').innerHTML += this.createTableRow(task)
         });
@@ -44,28 +45,24 @@ export class TaskList extends HTMLElement {
     }
 
     createTableRow(task) {
-        const row = `
-          <tr>
-            <td>${task.nameTask}</td>
-            <td>${task.startDate}</td>
-            <td>${task.endDate}</td>
-            <td>${task.person}</td>
-            <td>${task.taskType}</td>
-            <td>${task.status}</td>
-            <td>
-              <button class="btn btn-success btn-ok">Terminada</button>
-              <button class="btn btn-danger btn-error">Cancelar</button>
-            </td>
-          </tr>
-        `;
-        return row;
-    }
-  
-    changeStatus(){
-      
+      const row = `
+        <tr id="${task.nameTask}">
+          <td>${task.nameTask}</td>
+          <td>${task.startDate}</td>
+          <td>${task.endDate}</td>
+          <td>${task.person}</td>
+          <td>${task.taskType}</td>
+          <td>${task.status}</td>
+          <td>
+            <button class="btn btn-success btn-ok">Terminada</button>
+            <button class="btn btn-danger btn-error">Cancelar</button>
+          </td>
+        </tr>
+      `;
+
+      return row;
     }
 
 }
-
 
 customElements.define("task-list", TaskList);
