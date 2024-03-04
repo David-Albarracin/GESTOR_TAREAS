@@ -4,7 +4,7 @@ import {taskService} from './../services/taskService.js'
 //TEMPLATE
 const template = document.createElement("template");
 template.innerHTML =  /*HTML*/`
-    <h2>Tareas Pendientes</h2>
+    <h2 id="title"></h2>
     <table class="table">
       <thead>
         <tr>
@@ -32,37 +32,67 @@ export class TaskList extends HTMLElement {
 
     async render(){
         //load Component and template  
+        
         const html = template.content.cloneNode((true));
         const tasks = await taskService.loadTasks();
+        const type = this.getAttribute("type")
+        html.querySelector('#title').textContent = `Tareas ${type}s`
         tasks.forEach(task => {
-          html.querySelector('#taskTable').innerHTML += this.createTableRow(task)
+          if (task.status == type) {
+            html.querySelector('#taskTable').appendChild(this.createTableRow(task));
+          }
         });
         this.appendChild(html);
     };
 
     newTask = (task) => {
-        document.querySelector('#taskTable').innerHTML += this.createTableRow(task)
+        document.querySelector('#taskTable').appendChild(this.createTableRow(task));
     }
 
+
     createTableRow(task) {
-      const row = `
-        <tr id="${task.nameTask}">
+      const row = document.createElement('tr');
+      row.id = task.id;
+
+      const buttonsCell = document.createElement('td');
+      const finishButton = document.createElement('button');
+      finishButton.textContent = 'terminada';
+      finishButton.classList.add('btn', 'btn-success', 'btn-ok');
+      finishButton.addEventListener('click', (e) => {
+          document.getElementById(task.id).remove()
+          taskService.changeStatus(task.id, 'terminada');
+          e.stopImmediatePropagation();
+          e.stopPropagation();
+      });
+
+      const cancelButton = document.createElement('button');
+      cancelButton.textContent = 'cancelada';
+      cancelButton.classList.add('btn', 'btn-danger', 'btn-error');
+      cancelButton.addEventListener('click', (e) => {
+        document.getElementById(task.id).remove()
+        taskService.changeStatus(task.id, 'cancelada');
+        e.stopImmediatePropagation();
+        e.stopPropagation();
+      });
+
+      buttonsCell.appendChild(finishButton);
+      buttonsCell.appendChild(cancelButton);
+
+      row.innerHTML = `
           <td>${task.nameTask}</td>
           <td>${task.startDate}</td>
           <td>${task.endDate}</td>
           <td>${task.person}</td>
           <td>${task.taskType}</td>
           <td>${task.status}</td>
-          <td>
-            <button class="btn btn-success btn-ok">Terminada</button>
-            <button class="btn btn-danger btn-error">Cancelar</button>
-          </td>
-        </tr>
       `;
+
+      row.appendChild(buttonsCell);
 
       return row;
     }
 
 }
+
 
 customElements.define("task-list", TaskList);

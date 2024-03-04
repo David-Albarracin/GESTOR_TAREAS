@@ -79,7 +79,9 @@ export class Home extends HTMLElement {
         
             // Objeto para almacenar los datos del formulario
             const formData = {
-                status: "pendiente"
+                id: `${taskService.tasks.length + 1}`,
+                status: "pendiente",
+                taskType: "medium"
             };
         
             // Obtener todos los elementos de entrada del formulario
@@ -90,12 +92,11 @@ export class Home extends HTMLElement {
                 // Si el input es un radio button y está marcado, almacenar su valor en la variable taskType
                 input.type === 'radio'? 
                 (input.checked? 
-                    formData['taskType'] = input.value: 
-                    formData['taskType'] = "medium"): 
+                    formData.taskType = input.value: 
+                    ""): 
                     input.value? formData[input.id] = input.value: checkInput = false
             });
             if (checkInput) {
-                // Imprimir el objeto formData en la consola
                 taskService.saveData(formData);
             }else{
                 alert("faltan datos para continuar")

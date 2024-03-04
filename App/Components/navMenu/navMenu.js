@@ -5,7 +5,7 @@ template.innerHTML =  /*HTML*/`
 <ul class="nav nav-pills test">
   <li class="nav-item "><a href="#" data-link='["i"]' class="nav-link active" aria-current="page">Inicio</a></li>
   <li class="nav-item"><a href="#" data-link='["c"]' class="nav-link">Tareas Completas</a></li>
-  <li class="nav-item"><a href="#" data-link='["p"]' class="nav-link">Tareas Pendientes</a></li>
+  <li class="nav-item"><a href="#" data-link='["p"]' class="nav-link">Tareas Canceladas</a></li>
 </ul>
 `;
 
@@ -16,7 +16,7 @@ export const homeTemplate = `
             <home-component></home-component>
         </div>
         <div class="col-md-6">
-            <task-list></task-list>
+            <task-list type="pendiente"></task-list>
         </div>
     </div>
 </div>
@@ -43,6 +43,22 @@ export class NavMenu extends HTMLElement {
                 switch (url[0]) {
                     case 'i':
                         main.innerHTML = homeTemplate;
+                        break;
+
+                    case 'c':
+                        main.innerHTML = `
+                        <div class="container-xl">
+                            <task-list type="terminada"></task-list>
+                        </div>
+                        `;
+                        break;
+
+                    case 'p':
+                        main.innerHTML = `
+                        <div class="container-xl">
+                            <task-list type="cancelada"></task-list>
+                        </div>
+                        `;
                         break;
 
                     default:
