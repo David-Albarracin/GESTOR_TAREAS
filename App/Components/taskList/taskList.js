@@ -5,16 +5,17 @@ import {taskService} from '/app/services/taskService.js'
 //TEMPLATE
 const template = document.createElement("template");
 template.innerHTML =  /*HTML*/`
-    <h2>Task List</h2>
+    <h2>Tareas Pendientes</h2>
     <table class="table">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Start Date</th>
-          <th>End Date</th>
-          <th>Person</th>
-          <th>Task Type</th>
-          <th>Actions</th>
+          <th>Nombre</th>
+          <th>Fecha de Inicio</th>
+          <th>Fecha de Final</th>
+          <th>Encargado</th>
+          <th>Prioridad</th>
+          <th>Estado</th>
+          <th></th>
         </tr>
       </thead>
       <tbody id="taskTable">
@@ -51,16 +52,19 @@ export class TaskList extends HTMLElement {
             <td>${task.endDate}</td>
             <td>${task.person}</td>
             <td>${task.taskType}</td>
+            <td>${task.status}</td>
             <td>
-              <button class="btn btn-success btn-ok">OK</button>
-              <button class="btn btn-danger btn-error">Error</button>
+              <button class="btn btn-success btn-ok">Terminada</button>
+              <button class="btn btn-danger btn-error">Cancelar</button>
             </td>
           </tr>
         `;
         return row;
     }
   
-    
+    changeStatus(){
+      
+    }
 
 }
 

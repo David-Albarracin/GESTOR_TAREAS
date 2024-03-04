@@ -78,11 +78,13 @@ export class Home extends HTMLElement {
             event.preventDefault(); // Evita que se envíe el formulario
         
             // Objeto para almacenar los datos del formulario
-            const formData = {};
+            const formData = {
+                status: "pendiente"
+            };
         
             // Obtener todos los elementos de entrada del formulario
             const formInputs = this.querySelectorAll('input');
-        
+            let checkInput = true
             // Iterar sobre los elementos de entrada y almacenar los valores en el objeto formData
             formInputs.forEach(input => {
                 // Si el input es un radio button y está marcado, almacenar su valor en la variable taskType
@@ -90,11 +92,16 @@ export class Home extends HTMLElement {
                 (input.checked? 
                     formData['taskType'] = input.value: 
                     formData['taskType'] = "medium"): 
-                    formData[input.id] = input.value;
+                    input.value? formData[input.id] = input.value: checkInput = false
             });
-        
-            // Imprimir el objeto formData en la consola
-            taskService.saveData(formData);
+            if (checkInput) {
+                // Imprimir el objeto formData en la consola
+                taskService.saveData(formData);
+            }else{
+                alert("faltan datos para continuar")
+            }
+
+
 
             // Aquí puedes enviar los datos a través de una solicitud AJAX o realizar otras operaciones
         });
