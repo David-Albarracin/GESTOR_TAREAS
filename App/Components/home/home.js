@@ -5,8 +5,8 @@ import { taskService } from "./../services/taskService.js";
 const template = document.createElement("template");
 template.innerHTML =  /*HTML*/`
 <style>
-    @import '/styles.css';
-    @import '/app/components/home/home.css';
+    @import './styles.css';
+    @import './App/Components/home/home.css';
 </style>
 <div class="d-grid">
     <form id="taskForm" class="col-lg-6 mt-3 full-width">

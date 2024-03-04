@@ -1,7 +1,7 @@
 import {TaskList} from './../taskList/taskList.js';
 
 class TaskService {
-    urlData = '/App/data/data.json';
+    urlData = './../../data/data.json';
     tasks = [];
 
     constructor() {
