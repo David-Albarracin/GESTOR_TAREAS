@@ -1,0 +1,11 @@
+{
+    "task": [
+        {
+            "nameTask": "Task 1",
+            "startDate": "2024-02-27",
+            "endDate": "2024-03-05",
+            "person": "John Doe",
+            "taskType": "medium"
+        }
+    ]
+}

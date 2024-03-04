@@ -9,6 +9,19 @@ template.innerHTML =  /*HTML*/`
 </ul>
 `;
 
+export const homeTemplate = `
+<div class="container-xl">
+    <div class="row">
+        <div class="col-md-6">
+            <home-component></home-component>
+        </div>
+        <div class="col-md-6">
+            <task-list></task-list>
+        </div>
+    </div>
+</div>
+`
+
 //COMPONENT
 export class NavMenu extends HTMLElement {
     constructor(){
@@ -20,15 +33,16 @@ export class NavMenu extends HTMLElement {
         //load Component and template  
         const html = template.content.cloneNode((true));
         this.appendChild(html);
-
-
         this.querySelectorAll('.nav-link').forEach(a => {
             a.addEventListener('click', (e) => {
+                this.querySelectorAll('.nav-link').forEach(link => {
+                    link == e.target? link.classList.add("active") : link.classList.remove('active');
+                });
                 const url = JSON.parse(e.target.dataset.link)
                 const main = document.querySelector('#main')
                 switch (url[0]) {
                     case 'i':
-                        main.innerHTML = "<home-component></home-component>";
+                        main.innerHTML = homeTemplate;
                         break;
 
                     default:
