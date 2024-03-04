@@ -1,5 +1,6 @@
+// import {taskService} from '/App/services/taskService.js'
 
-import {taskService} from '/app/services/taskService.js'
+import {taskService} from 'https://github.com/David-Albarracin/GESTOR_TAREAS/blob/main/App/services/taskService.js'
 
 
 //TEMPLATE
